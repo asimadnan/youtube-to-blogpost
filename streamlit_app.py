@@ -1,6 +1,7 @@
 import streamlit as st
 from fetch_transcripts import process_url, fetch_transcript
 from transcript_to_blog import BlogPostGenerator
+import os 
 
 # Sidebar for OpenAI API key and links
 with st.sidebar:
@@ -8,6 +9,7 @@ with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
     if openai_api_key:
         st.session_state.openai_api_key = openai_api_key
+        os.environ["OPENAI_API_KEY"] = openai_api_key
         st.success("OpenAI API Key set successfully!")
     st.markdown("[Get an OpenAI API key](https://platform.openai.com/account/api-keys)")
 
